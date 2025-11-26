@@ -1,0 +1,2 @@
+model,UD_mean,SAL_mean,SAL_reduction_pct,ASR,TTC,CT_epsilon,Oscillation,DC_mean,ASSC_mean,NC_mean,AIC_mean,Power_mean_W,Energy_run_J,Energy_train_J,Perf_per_Watt,EDP
+DQN-WF-MTD,5.132861257899256,4.842786514633529,,0.9328,3.0,1248,0.0,0.7360153113234326,0.3,0.18601531132343246,0.25,,,,,

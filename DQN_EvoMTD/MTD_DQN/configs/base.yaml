@@ -1,0 +1,87 @@
+seeds:
+  global_seed: 1337
+  torch_deterministic: true
+
+env:
+  graph_type: erdos
+  number_of_nodes: 12
+  hop_attenuation: 0.85
+  lateral_hops: [1, 2, 3]
+  detection_rates:
+    lambda_c: 0.35
+    lambda_i: 0.42
+    lambda_a: 0.51
+  valuation:
+    R_c: 2.5
+    R_i: 3.0
+    R_a: 3.5
+    resource_importance: 1.8
+  defender_knobs:
+    c_star: 0.8
+    a_r: 1.2
+    SQ: 0.6
+    k_s: 0.4
+    ASSC: 0.3
+    AIC: 0.25
+  attacker_capability:
+    overflow: 0.75
+    destroy: 0.65
+    lateral: 0.55
+  strategies:
+    G_A: ['overflow', 'destroy', 'lateral']
+    G_D: ['iphop', 'ip_proto_hop', 'time_rand']
+  ambiguity:
+    U_scenarios: 8
+    transition_set_size: 5
+    dirichlet_alpha: 2.0
+    reward_bounds:
+      defender: [0.8, 1.2]
+      attacker: [0.6, 1.4]
+    logit_normal:
+      mu: 0.0
+      sigma: 0.25
+  bounded_rationality:
+    omega_A: 0.6
+    omega_D: 0.7
+    eta: 0.15
+  wf:
+    K_WF: 5
+  path_structure:
+    path1_states: 5
+    path2_states: 4
+
+dqn:
+  hidden_dims: [256, 256]
+  lr: 0.0003
+  gamma: 0.99
+  tau_soft: 0.005
+  tau_D: 0.7
+  beta_ent: 0.001
+  huber_kappa: 1.0
+  weight_decay: 1e-05
+  layer_norm: true
+
+replay:
+  capacity: 20000
+  batch_size: 64
+  warmup_steps: 512
+  update_freq: 4
+  target_update_freq: 320
+
+training:
+  episodes: 1000
+  steps_per_episode: 50
+  evaluation_every: 25
+  save_every: 50
+  max_no_improve: 40
+
+plotting:
+  style: default
+  dpi: 200
+
+output:
+  base_dir: results
+  figures_dir: results/figures
+  tables_dir: results/tables
+  logs_dir: results/logs
+  checkpoints_dir: results/checkpoints

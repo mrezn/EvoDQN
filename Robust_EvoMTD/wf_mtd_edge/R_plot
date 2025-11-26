@@ -1,0 +1,62 @@
+# Paste this into R
+
+# Packages
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+library(scales)
+
+# Absolute path to your file
+csv_path <- "C:/Users/user/Downloads/fig3_state1_evolution-1.csv"
+
+if (!file.exists(csv_path)) {
+  stop(paste("File not found at:", csv_path))
+}
+
+# Read CSV
+df <- read.csv(csv_path, check.names = FALSE)
+
+# Ensure the first column is named "Measures"
+names(df)[1] <- "Measures"
+
+# Long format
+data_long <- df %>%
+  pivot_longer(cols = -Measures, names_to = "Algorithm", values_to = "Value") %>%
+  mutate(Value = as.numeric(Value))
+
+# Preserve input order of Measures on x-axis
+data_long$Measures <- factor(data_long$Measures, levels = unique(df$Measures))
+
+# Thin x-axis labels so they are readable:
+# Aim for at most ~10 tick labels by selecting every k-th level.
+lvls  <- levels(data_long$Measures)
+k     <- max(1, ceiling(length(lvls) / 10))   # change "10" if you want more/less labels
+x_bks <- lvls[seq(1, length(lvls), by = k)]
+
+# Color palette
+ccf_base <- c("#0072B2", "#009E73", "#D55E00", "#CC79A7",
+              "#F0E442", "#56B4E9", "#E69F00", "#000000")
+algs <- unique(data_long$Algorithm)
+n_alg <- length(algs)
+pal <- if (n_alg <= length(ccf_base)) ccf_base[seq_len(n_alg)] else c(ccf_base, scales::hue_pal()(n_alg - length(ccf_base)))
+names(pal) <- algs
+
+# Plot with improved x-axis readability
+ggplot(data_long, aes(x = Measures, y = Value, color = Algorithm, group = Algorithm)) +
+  geom_line() +
+  geom_point() +
+  scale_color_manual(values = pal) +
+  scale_x_discrete(breaks = x_bks, expand = expansion(mult = c(0.01, 0.01))) +
+  guides(x = guide_axis(angle = 45, n.dodge = 2)) +
+  labs(title = "", x = "Measures", y = "Value") +
+  theme_bw() +
+  theme(
+    axis.text.x = element_text(size = 13),  # larger x labels
+    legend.position = "right",
+    panel.border = element_blank(),
+    legend.text = element_text(size = 12),
+    legend.title = element_text(size = 12),
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 12),
+    plot.margin = margin(5.5, 20, 5.5, 5.5)  # a bit more right padding
+  )

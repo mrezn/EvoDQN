@@ -1,0 +1,7 @@
+{
+  "defender_return_mean": 5.132861257899257,
+  "defender_return_std": 0.03160818567941233,
+  "attacker_return_mean": 4.302706514633528,
+  "attacker_return_std": 0.04008386145603618,
+  "convergence_l1": 0.11939011635969922
+}

@@ -1,0 +1,19 @@
+{
+  "model": "DQN-WF-MTD",
+  "UD_mean": 5.132861257899256,
+  "SAL_mean": 4.842786514633529,
+  "SAL_reduction_pct": null,
+  "ASR": 0.9328,
+  "TTC": 3.0,
+  "CT_epsilon": 1248,
+  "Oscillation": 0.0,
+  "DC_mean": 0.7360153113234326,
+  "ASSC_mean": 0.3,
+  "NC_mean": 0.18601531132343246,
+  "AIC_mean": 0.25,
+  "Power_mean_W": null,
+  "Energy_run_J": null,
+  "Energy_train_J": null,
+  "Perf_per_Watt": null,
+  "EDP": null
+}

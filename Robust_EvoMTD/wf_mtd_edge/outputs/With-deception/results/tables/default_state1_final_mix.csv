@@ -1,0 +1,7 @@
+Strategy,Player,Probability,Is_Argmax
+overflow_rce,Attacker,0.1804935905133786,0
+ddos_l7,Attacker,0.06559074324278956,0
+lateral_ssh,Attacker,0.7539156662438319,1
+ip_port_hop,Defender,0.3345323136944985,0
+container_rotate,Defender,0.32330677932785795,0
+microseg_acl,Defender,0.3421609069776436,1

@@ -1,0 +1,144 @@
+network:
+  states: [S0, S1]
+  initial_state: S0
+  adjacency:
+    - [0, 1, 0, 1]
+    - [1, 0, 1, 0]
+    - [0, 1, 0, 1]
+    - [1, 0, 1, 0]
+  hosts: [edge1, edge2, cloud1, cloud2]
+  initial_b: [1, 1, 1, 0]
+  base_kernel:
+    -
+      -
+        - [0.7, 0.3]
+        - [0.5, 0.5]
+      -
+        - [0.6, 0.4]
+        - [0.4, 0.6]
+    -
+      -
+        - [0.55, 0.45]
+        - [0.35, 0.65]
+      -
+        - [0.5, 0.5]
+        - [0.3, 0.7]
+attributes:
+  lambda:
+    c: 0.25
+    i: 0.3
+    a: 0.35
+  weights:
+    c: 0.5
+    i: 0.3
+    a: 0.2
+  values:
+    c: 4.0
+    i: 2.0
+    a: 1.5
+  resource_importance: 1.0
+strategies:
+  attack:
+    - name: spear_phishing
+      features:
+        T_c: 2.0
+        H_c: 1.0
+        K_c: 0.6
+        R_c: 0.4
+        D_c: 0.3
+        S_c: 0.2
+      pi: 0.6
+      signal_profile:
+        tau_low: 0.7
+        tau_high: 0.3
+    - name: waterhole
+      features:
+        T_c: 1.5
+        H_c: 1.1
+        K_c: 0.8
+        R_c: 0.5
+        D_c: 0.4
+        S_c: 0.3
+      pi: 0.4
+      signal_profile:
+        tau_low: 0.4
+        tau_high: 0.6
+  defense:
+    - name: patching
+      costs:
+        ASSC: 1.2
+        AIC: 0.4
+        SCC: 0.3
+    - name: shuffling
+      costs:
+        ASSC: 1.5
+        AIC: 0.5
+        SCC: 0.4
+beliefs:
+  type_probs:
+    tau_low: 0.6
+    tau_high: 0.4
+  signal_probs:
+    tau_low: 0.55
+    tau_high: 0.45
+  attack_given_type:
+    tau_low:
+      spear_phishing: 0.7
+      waterhole: 0.3
+    tau_high:
+      spear_phishing: 0.4
+      waterhole: 0.6
+  misdiagnosis:
+    - [0.85, 0.15]
+    - [0.2, 0.8]
+mtd:
+  c_star: 1.1
+  a: 0.8
+  mu:
+    patching: 0.6
+    shuffling: 0.7
+  SQ: 1.2
+  k: 0.35
+uncertainty:
+  theta_a_bounds:
+    default: [0.9, 1.1]
+  theta_d_bounds:
+    default: [0.95, 1.15]
+  dirichlet_alpha:
+    default: [4.0, 2.0]
+  tv_radius: 0.2
+  samples: 5
+  grid_size: 5
+  beta_prior: [2.0, 2.0]
+  logit_scale: 1.0
+run:
+  horizon: 3
+  discount: 0.95
+  eta: 0.2
+  steps: 50
+  omega_a: 0.7
+  omega_d: 0.65
+  seed: 123
+  tolerance: 0.0005
+  beta_reg: 0.1
+  alpha_incentive: 0.05
+  info_shared: 0.8
+  mode: robust
+  log_path: null
+  trajectory_path: outputs/small_demo.jsonl
+attack_cost_weights:
+  T_c: 0.25
+  H_c: 0.2
+  K_c: 0.15
+  R_c: 0.15
+  D_c: 0.15
+  S_c: 0.1
+defense_costs:
+  patching:
+    ASSC: 1.2
+    AIC: 0.4
+    SCC: 0.3
+  shuffling:
+    ASSC: 1.5
+    AIC: 0.5
+    SCC: 0.4

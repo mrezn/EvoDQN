@@ -1,0 +1,66 @@
+[
+  {
+    "model": "MTD_DQN",
+    "metric": "attacker_payoff",
+    "mean": 4.3280829747579075,
+    "std": 0.318885944343884,
+    "min": 3.7959693892166295,
+    "max": 5.954980463257666
+  },
+  {
+    "model": "MTD_DQN",
+    "metric": "defender_payoff",
+    "mean": 5.024868842573676,
+    "std": 0.31610451672818446,
+    "min": 3.5793268376359224,
+    "max": 5.492059257316639
+  },
+  {
+    "model": "MTD_DQN",
+    "metric": "loss",
+    "mean": 4.786253661494702,
+    "std": 3.9294858185713664,
+    "min": 0.0127493264153599,
+    "max": 16.407258987426758
+  },
+  {
+    "model": "MTD_DQN",
+    "metric": "eval::defender_return_mean",
+    "mean": 5.123855618460797,
+    "std": 0.0,
+    "min": 5.123855618460797,
+    "max": 5.123855618460797
+  },
+  {
+    "model": "MTD_DQN",
+    "metric": "eval::defender_return_std",
+    "mean": 0.031705967848297996,
+    "std": 0.0,
+    "min": 0.031705967848297996,
+    "max": 0.031705967848297996
+  },
+  {
+    "model": "MTD_DQN",
+    "metric": "eval::attacker_return_mean",
+    "mean": 4.30150765212691,
+    "std": 0.0,
+    "min": 4.30150765212691,
+    "max": 4.30150765212691
+  },
+  {
+    "model": "MTD_DQN",
+    "metric": "eval::attacker_return_std",
+    "mean": 0.039792401533094705,
+    "std": 0.0,
+    "min": 0.039792401533094705,
+    "max": 0.039792401533094705
+  },
+  {
+    "model": "MTD_DQN",
+    "metric": "eval::convergence_l1",
+    "mean": 3.249320076062081e-05,
+    "std": 0.0,
+    "min": 3.249320076062081e-05,
+    "max": 3.249320076062081e-05
+  }
+]

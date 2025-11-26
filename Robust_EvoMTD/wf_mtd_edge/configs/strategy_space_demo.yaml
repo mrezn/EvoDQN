@@ -1,0 +1,206 @@
+network:
+  states: [S0, S1]
+  initial_state: S0
+  adjacency:
+    - [0, 1, 1, 0, 0]
+    - [1, 0, 1, 1, 0]
+    - [1, 1, 0, 1, 1]
+    - [0, 1, 1, 0, 1]
+    - [0, 0, 1, 1, 0]
+  hosts: [edge1, edge2, edge3, cloud1, cloud2]
+  initial_b: [1, 1, 1, 1, 0]
+  base_kernel:
+    -
+      -
+        - [0.72, 0.28]
+        - [0.68, 0.32]
+        - [0.65, 0.35]
+      -
+        - [0.6, 0.4]
+        - [0.55, 0.45]
+        - [0.5, 0.5]
+      -
+        - [0.66, 0.34]
+        - [0.62, 0.38]
+        - [0.58, 0.42]
+    -
+      -
+        - [0.6, 0.4]
+        - [0.55, 0.45]
+        - [0.5, 0.5]
+      -
+        - [0.48, 0.52]
+        - [0.45, 0.55]
+        - [0.4, 0.6]
+      -
+        - [0.52, 0.48]
+        - [0.48, 0.52]
+        - [0.44, 0.56]
+attributes:
+  lambda:
+    c: 0.25
+    i: 0.3
+    a: 0.35
+  weights:
+    c: 0.34
+    i: 0.33
+    a: 0.33
+  values:
+    c: 5.0
+    i: 3.0
+    a: 2.0
+  resource_importance: 1.1
+strategies:
+  attack:
+    - name: overflow_rce
+      W:
+        c: 0.2
+        i: 0.4
+        a: 0.4
+      pi: 0.8
+      cost:
+        T_c: 3.0
+        H_c: 2.0
+        K_c: 4.0
+        R_c: 2.0
+        D_c: 3.0
+        S_c: 1.0
+    - name: ddos_l7
+      W:
+        c: 0.1
+        i: 0.1
+        a: 0.8
+      pi: 0.9
+      cost:
+        T_c: 2.5
+        H_c: 3.0
+        K_c: 3.5
+        R_c: 3.2
+        D_c: 2.8
+        S_c: 1.5
+    - name: lateral_ssh
+      W:
+        c: 0.3
+        i: 0.4
+        a: 0.3
+      pi: 0.6
+      cost:
+        T_c: 2.0
+        H_c: 1.8
+        K_c: 2.5
+        R_c: 2.3
+        D_c: 1.7
+        S_c: 1.1
+  defense:
+    - name: ip_port_hop
+      c_star: 4.0
+      a: 0.7
+      lambda:
+        c: 0.5
+        i: 0.6
+        a: 0.6
+      mu: 0.3
+      costs:
+        ASSC: 2.0
+        AIC: 1.2
+        SCC: 0.5
+    - name: container_rotate
+      c_star: 6.0
+      a: 0.9
+      lambda:
+        c: 0.6
+        i: 0.7
+        a: 0.7
+      mu: 0.4
+      costs:
+        ASSC: 2.3
+        AIC: 1.4
+        SCC: 0.6
+    - name: microseg_acl
+      c_star: 3.0
+      a: 0.4
+      lambda:
+        c: 0.7
+        i: 0.7
+        a: 0.5
+      mu: 0.2
+      costs:
+        ASSC: 1.8
+        AIC: 1.1
+        SCC: 0.4
+beliefs:
+  type_probs:
+    tau_weak: 0.55
+    tau_strong: 0.45
+  signal_probs:
+    tau_weak: 0.6
+    tau_strong: 0.4
+  attack_given_type:
+    tau_weak:
+      overflow_rce: 0.5
+      ddos_l7: 0.3
+      lateral_ssh: 0.2
+    tau_strong:
+      overflow_rce: 0.3
+      ddos_l7: 0.4
+      lateral_ssh: 0.3
+  misdiagnosis:
+    - [0.82, 0.12, 0.06]
+    - [0.15, 0.7, 0.15]
+    - [0.1, 0.2, 0.7]
+mtd:
+  c_star: 1.0
+  a: 1.0
+  mu:
+    ip_port_hop: 0.3
+    container_rotate: 0.4
+    microseg_acl: 0.2
+  SQ: 1.1
+  k: 0.35
+uncertainty:
+  theta_a_bounds:
+    default: [0.88, 1.12]
+  theta_d_bounds:
+    default: [0.92, 1.18]
+  dirichlet_alpha:
+    default: [5.0, 3.0]
+  tv_radius: 0.22
+  samples: 6
+  grid_size: 6
+  beta_prior: [2.2, 2.0]
+  logit_scale: 1.0
+run:
+  horizon: 4
+  discount: 0.94
+  eta: 0.18
+  steps: 60
+  omega_a: 0.7
+  omega_d: 0.65
+  seed: 777
+  tolerance: 0.0005
+  beta_reg: 0.11
+  alpha_incentive: 0.07
+  info_shared: 0.85
+  mode: robust
+  log_path: null
+  trajectory_path: outputs/strategy_demo.jsonl
+attack_cost_weights:
+  T_c: 0.22
+  H_c: 0.2
+  K_c: 0.16
+  R_c: 0.16
+  D_c: 0.14
+  S_c: 0.12
+defense_costs:
+  ip_port_hop:
+    ASSC: 2.0
+    AIC: 1.2
+    SCC: 0.5
+  container_rotate:
+    ASSC: 2.3
+    AIC: 1.4
+    SCC: 0.6
+  microseg_acl:
+    ASSC: 1.8
+    AIC: 1.1
+    SCC: 0.4

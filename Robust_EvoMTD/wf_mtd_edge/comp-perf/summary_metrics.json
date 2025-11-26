@@ -1,0 +1,19 @@
+{
+  "model": "WF-MTD",
+  "UD_mean": -14.187414868525657,
+  "SAL_mean": 4.240042530051178,
+  "SAL_reduction_pct": null,
+  "ASR": 1.0,
+  "TTC": Infinity,
+  "CT_epsilon": -1,
+  "Oscillation": 0.002533866241393641,
+  "DC_mean": 4.222717845294709,
+  "ASSC_mean": 2.028495391557597,
+  "NC_mean": 0.4657270621795154,
+  "AIC_mean": 1.2304003071244909,
+  "Power_mean_W": null,
+  "Energy_run_J": null,
+  "Energy_train_J": null,
+  "Perf_per_Watt": null,
+  "EDP": null
+}

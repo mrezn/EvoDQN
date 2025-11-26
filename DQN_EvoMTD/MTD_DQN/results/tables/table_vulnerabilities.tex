@@ -1,0 +1,14 @@
+\begin{table}
+\caption{Attack surface overview}
+\label{tab:vulnerabilities}
+\begin{tabular}{lll}
+\toprule
+Component & Vulnerability & Mitigation \\
+\midrule
+Sensor & Firmware overflow and spoofed telemetry & MTD schedule, integrity attestation \\
+Edge host & Credential replay and lateral movement & IP/port hopping, rate limiting \\
+Control layer & Command injection via stale sessions & Adaptive isolation, strong detection ? \\
+Cloud & Data exfiltration under weak configs & Time randomisation, resource hardening \\
+\bottomrule
+\end{tabular}
+\end{table}

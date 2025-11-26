@@ -1,0 +1,7 @@
+Role,Strategy,Mechanism,Impact,Key knobs,Uncertainty
+Attacker,overflow,Adaptive manoeuvre across WF attack graph,Increases SAL via stealthy pivoting,p_i capability,Reward scale T^A and transition ambiguity ??
+Attacker,destroy,Adaptive manoeuvre across WF attack graph,Increases SAL via stealthy pivoting,p_i capability,Reward scale T^A and transition ambiguity ??
+Attacker,lateral,Adaptive manoeuvre across WF attack graph,Increases SAL via stealthy pivoting,p_i capability,Reward scale T^A and transition ambiguity ??
+Defender,iphop,reconfiguration of edge resources,Mitigates SAP loss and improves assurance,"c_* rate a_r, SQ","Reward scale TD, bounded rational policy"
+Defender,ip_proto_hop,reconfiguration of edge resources,Mitigates SAP loss and improves assurance,"c_* rate a_r, SQ","Reward scale TD, bounded rational policy"
+Defender,time_rand,reconfiguration of edge resources,Mitigates SAP loss and improves assurance,"c_* rate a_r, SQ","Reward scale TD, bounded rational policy"

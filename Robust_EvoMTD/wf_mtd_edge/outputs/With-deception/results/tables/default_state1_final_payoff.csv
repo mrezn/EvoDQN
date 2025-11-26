@@ -1,0 +1,7 @@
+Strategy,Player,Expected_Payoff
+overflow_rce,Attacker,9.697537988155638
+ddos_l7,Attacker,8.710128948619952
+lateral_ssh,Attacker,11.120711220690339
+ip_port_hop,Defender,-14.518611824495506
+container_rotate,Defender,-15.057491039665393
+microseg_acl,Defender,-14.1726017886383
