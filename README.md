@@ -1,13 +1,15 @@
 ﻿# DQN-EvoMTD & WF-MTD Edge Repository
 
-This repository combines two complementary Moving Target Defense (MTD) implementations:
+This repository combines two complementary Moving Target Defense (MTD) implementations for paper "EvoDQN: Deep-Q Evolutionary Moving Target Defense with Bounded Rational Agents under Uncertainty in Edge–Cloud Systems":
 
-1. **`MTD_DQN/`** – A Dueling Double-DQN defender coupled with Wright–Fisher (WF) evolutionary dynamics under reward/transition uncertainty. Includes response-time instrumentation, plotting scripts, and evaluation tooling.
-2. **`wf_mtd_edge/`** – A robust WF-MTD edge/cloud simulator driven by evolutionary stage games and optional additional figures.
+1. **`DQN_EvoMTD/MTD_DQN/`** – A Dueling Double-DQN defender coupled with evolutionary dynamics under reward/transition uncertainty. Includes response-time instrumentation, plotting scripts, and evaluation tooling.
+2. **`Robust_EvoMTD/wf_mtd_edge/`** – A robust WF-MTD edge simulator driven by evolutionary stage games and optional additional figures.
 
 Both projects can be developed independently while sharing comparison utilities (`comp-perf/`).
 
 ---
+![Figure Example](/DQN_EvoMTD/MTD_DQN/model.jpg)
+
 
 ## 1. Installation
 
